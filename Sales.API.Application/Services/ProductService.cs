@@ -66,7 +66,7 @@ namespace Sales.API.Application.Services
 
         public static double CalculateComission(double totalPrice, int percentage)
         {
-            var comissionPrice = totalPrice * percentage;
+            var comissionPrice = (totalPrice * percentage)/100;
             return comissionPrice;
         }
     }
