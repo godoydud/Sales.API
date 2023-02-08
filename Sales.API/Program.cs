@@ -10,7 +10,7 @@ builder.Services.AddCors();
 
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<CoreContext>(options =>
-    options.UseNpgsql("Host=localhost;Port=5432;Pooling=true;Database=SalesControl;User Id=postgres;Password=admin;"));
+    options.UseNpgsql("Host=salesbd.postgres.database.azure.com;Port=5432;Pooling=true;Database=salesdb;User Id=godoydud;Password=Mbdg0317*;"));
 
 
 ConfigureService.Configure(builder.Services);

@@ -12,8 +12,8 @@ using Sales.API.Infra.Data.Context;
 namespace Sales.API.Infra.Data.Migrations
 {
     [DbContext(typeof(CoreContext))]
-    [Migration("20230206182154_CreateTableComission")]
-    partial class CreateTableComission
+    [Migration("20230208121529_CreateInitialMigration")]
+    partial class CreateInitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,6 +49,15 @@ namespace Sales.API.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("ComissionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<double>("ComissionPrice")
+                        .HasColumnType("double precision");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -56,9 +65,25 @@ namespace Sales.API.Infra.Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("double precision");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("ComissionId");
+
                     b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("Sales.API.Domain.Entities.Product", b =>
+                {
+                    b.HasOne("Sales.API.Domain.Entities.Comission", "Comission")
+                        .WithMany()
+                        .HasForeignKey("ComissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comission");
                 });
 #pragma warning restore 612, 618
         }

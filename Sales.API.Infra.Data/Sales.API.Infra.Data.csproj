@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Sales.API.Domain\Sales.API.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
