@@ -27,6 +27,11 @@ namespace Sales.API.Application.Services
             product.TotalPrice = CalculatePrice(product.Amount, product.Price);
             product.ComissionPrice = CalculateComission(product.TotalPrice, comission.Percentage);
 
+            Math.Round(product.TotalPrice, 2);
+            Math.Round(product.ComissionPrice, 2);  
+
+            
+
             await _productRepository.CreateAsync(product);
             return _mapper.Map<ProductDTO>(product);
         }
