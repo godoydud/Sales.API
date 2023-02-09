@@ -27,8 +27,8 @@ namespace Sales.API.Application.Services
             product.TotalPrice = CalculatePrice(product.Amount, product.Price);
             product.ComissionPrice = CalculateComission(product.TotalPrice, comission.Percentage);
 
-            Math.Round(product.TotalPrice, 2);
-            Math.Round(product.ComissionPrice, 2);  
+            product.TotalPrice = Math.Round(product.TotalPrice, 2);
+            product.ComissionPrice = Math.Round(product.ComissionPrice, 2);  
 
             
 
