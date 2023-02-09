@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Sales.API.Domain.DTOs;
+using Sales.API.Domain.DTOs.Product;
 using Sales.API.Domain.Interfaces.Services;
 
 namespace Sales.API.Controllers

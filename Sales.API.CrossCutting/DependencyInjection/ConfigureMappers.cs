@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using Sales.API.Domain.DTOs;
+using Sales.API.Domain.DTOs.Product;
 using Sales.API.Domain.Entities;
 
 namespace Sales.API.CrossCutting.DependencyInjection
@@ -14,6 +15,8 @@ namespace Sales.API.CrossCutting.DependencyInjection
                 #region [ProductMapper]
                 config.CreateMap<Product, ProductDTO>();
                 config.CreateMap<ProductDTO, Product>();
+                config.CreateMap<Product, ProductResponseDTO>();
+                config.CreateMap<ProductResponseDTO, Product>();
                 #endregion
 
                 #region [ComissionMapper]

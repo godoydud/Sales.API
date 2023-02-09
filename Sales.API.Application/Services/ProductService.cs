@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Sales.API.Domain.DTOs;
+using Sales.API.Domain.DTOs.Product;
 using Sales.API.Domain.Entities;
 using Sales.API.Domain.Interfaces.Repositories;
 using Sales.API.Domain.Interfaces.Services;
@@ -37,10 +37,10 @@ namespace Sales.API.Application.Services
             await _productRepository.DeleteAsync(id);
         }
 
-        public async Task<ICollection<ProductDTO>> GetAllAsync()
+        public async Task<ICollection<ProductResponseDTO>> GetAllAsync()
         {
             var products = await _productRepository.GetAllAsync();
-            return _mapper.Map<ICollection<ProductDTO>>(products);
+            return _mapper.Map<ICollection<ProductResponseDTO>>(products);
 
         }
 
