@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Sales.API.Domain.DTOs;
+using Sales.API.Domain.DTOs.Base;
 using Sales.API.Domain.Entities;
 using Sales.API.Domain.Interfaces.Repositories;
 using Sales.API.Domain.Interfaces.Services;
@@ -16,12 +17,24 @@ namespace Sales.API.Application.Services
             _comissionRepository = comissionRepository;
             _mapper = mapper;
         }
-        public async Task<ComissionDTO> CreateAsync(ComissionDTO comissionDTO)
+
+        public async Task<ResponseDTO<ComissionDTO>> CreateAsync(ComissionDTO comissionDTO)
         {
-            var comission = _mapper.Map<Comission>(comissionDTO);
-            await _comissionRepository.CreateAsync(comission);
-            return _mapper.Map<ComissionDTO>(comission);
+            try
+            {
+                List<string> errors = Validate(comissionDTO);
+                if (errors.Count > 0)
+                    return new ResponseDTO<ComissionDTO>(400, errors);
+
+                var comission = _mapper.Map<Comission>(comissionDTO);
+                await _comissionRepository.CreateAsync(comission);
+                return new ResponseDTO<ComissionDTO>(201, comissionDTO);
+            }catch (Exception ex)
+            {
+                return new ResponseDTO<ComissionDTO>(500, ex.Message);
+            }
         }
+
         public async Task DeleteAsync(Guid id)
         {
 
@@ -47,6 +60,17 @@ namespace Sales.API.Application.Services
 
             var result = _mapper.Map<ComissionDTO>(comission);
             return result;
+        }
+
+        public List<string> Validate(ComissionDTO comissionDTO)
+        {
+            List<string> errors = new List<string>();
+            if (comissionDTO.Name.Length > 50)
+                errors.Add("Nome deve conter no máximo 50 caracteres.");
+            if (comissionDTO.Percentage <= 0)
+                errors.Add("Porcentagem não deve ser menor ou igual a zero.");
+
+            return errors;
         }
     }
 
