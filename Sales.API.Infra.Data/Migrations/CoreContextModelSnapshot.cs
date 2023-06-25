@@ -72,6 +72,25 @@ namespace Sales.API.Infra.Data.Migrations
                     b.ToTable("Product");
                 });
 
+            modelBuilder.Entity("Sales.API.Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("Sales.API.Domain.Entities.Product", b =>
                 {
                     b.HasOne("Sales.API.Domain.Entities.Comission", "Comission")

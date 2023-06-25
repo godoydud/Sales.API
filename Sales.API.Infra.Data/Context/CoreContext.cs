@@ -12,6 +12,7 @@ namespace Sales.API.Infra.Data.Context
 
         public DbSet<Product> Product{ get; set; }
         public DbSet<Comission> Comission{ get; set; }
+        public DbSet<User> User{ get; set; }
        
     }
 }
