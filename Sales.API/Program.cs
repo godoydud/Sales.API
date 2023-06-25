@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Sales.API.Application.Services;
 using Sales.API.CrossCutting.DependencyInjection;
-using Sales.API.Domain.Interfaces.Services;
 using Sales.API.Infra.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +8,7 @@ builder.Services.AddCors();
 
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<CoreContext>(options =>
-    options.UseNpgsql("Host=salesbd.postgres.database.azure.com;Port=5432;Pooling=true;Database=salesdb;User Id=godoydud;Password=Mbdg0317*;"));
+    options.UseNpgsql("Host=localhost;Port=5432;Pooling=true;Database=SalesControl;User Id=postgres;Password=admin;"));
 
 
 ConfigureService.Configure(builder.Services);
@@ -28,6 +26,10 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseCors(c => c
+    .AllowAnyOrigin()
+       .AllowAnyMethod()
+          .AllowAnyHeader());
 
 app.UseHttpsRedirection();
 
