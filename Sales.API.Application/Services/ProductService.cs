@@ -30,8 +30,6 @@ namespace Sales.API.Application.Services
             product.TotalPrice = Math.Round(product.TotalPrice, 2);
             product.ComissionPrice = Math.Round(product.ComissionPrice, 2);  
 
-            
-
             await _productRepository.CreateAsync(product);
             return _mapper.Map<ProductDTO>(product);
         }
@@ -45,8 +43,8 @@ namespace Sales.API.Application.Services
         public async Task<ICollection<ProductResponseDTO>> GetAllAsync()
         {
             var products = await _productRepository.GetAllAsync();
-            return _mapper.Map<ICollection<ProductResponseDTO>>(products);
 
+            return _mapper.Map<ICollection<ProductResponseDTO>>(products.OrderBy(x => x.Name));
         }
 
         public async Task<ProductDTO> GetByIdAsync(Guid id)
@@ -58,6 +56,13 @@ namespace Sales.API.Application.Services
         public async Task<ProductDTO> UpdateAsync(ProductDTO productDTO)
         {
             var product = _mapper.Map<Product>(productDTO);
+            var comission = await _comissionRepository.GetByIdAsync(product.ComissionId);
+
+            product.TotalPrice = CalculatePrice(product.Amount, product.Price);
+            product.ComissionPrice = CalculateComission(product.TotalPrice, comission.Percentage);
+
+            product.TotalPrice = Math.Round(product.TotalPrice, 2);
+            product.ComissionPrice = Math.Round(product.ComissionPrice, 2);
             await _productRepository.EditAsync(product);
 
             var result = _mapper.Map<ProductDTO>(product);

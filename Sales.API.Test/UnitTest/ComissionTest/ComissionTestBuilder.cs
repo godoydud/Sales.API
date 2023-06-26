@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Sales.API.Application.Services;
-using Sales.API.Domain.DTOs;
+using Sales.API.Domain.DTOs.Comission;
 using Sales.API.Domain.Entities;
 using Sales.API.Infra.Data.Context;
 using Sales.API.Infra.Data.Repositories;

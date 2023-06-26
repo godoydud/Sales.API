@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using Sales.API.Domain.DTOs;
+using Sales.API.Domain.DTOs.Comission;
 using Sales.API.Domain.DTOs.Product;
+using Sales.API.Domain.DTOs.User;
 using Sales.API.Domain.Entities;
 
 namespace Sales.API.CrossCutting.DependencyInjection
@@ -22,6 +23,11 @@ namespace Sales.API.CrossCutting.DependencyInjection
                 #region [ComissionMapper]
                 config.CreateMap<Comission, ComissionDTO>();
                 config.CreateMap<ComissionDTO, Comission>();
+                #endregion
+
+                #region[UserMapper]
+                config.CreateMap<User, UserDTO>();
+                config.CreateMap<UserDTO, User>();
                 #endregion
 
             }).CreateMapper());

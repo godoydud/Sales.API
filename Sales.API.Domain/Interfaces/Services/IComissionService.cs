@@ -1,5 +1,5 @@
-﻿using Sales.API.Domain.DTOs;
-using Sales.API.Domain.DTOs.Base;
+﻿using Sales.API.Domain.DTOs.Base;
+using Sales.API.Domain.DTOs.Comission;
 
 namespace Sales.API.Domain.Interfaces.Services
 {

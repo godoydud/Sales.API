@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Sales.API.Domain.DTOs
+namespace Sales.API.Domain.DTOs.Comission
 {
     public class ComissionDTO
     {

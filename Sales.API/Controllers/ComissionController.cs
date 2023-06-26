@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sales.API.Application.Services;
-using Sales.API.Domain.DTOs;
+using Sales.API.Domain.DTOs.Comission;
 using Sales.API.Domain.Interfaces.Services;
 
 namespace Sales.API.Controllers
@@ -54,7 +54,7 @@ namespace Sales.API.Controllers
             return StatusCode(StatusCodes.Status404NotFound);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult Delete(Guid id)
         {
             _comissionService.DeleteAsync(id);

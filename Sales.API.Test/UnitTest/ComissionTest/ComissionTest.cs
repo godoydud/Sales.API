@@ -1,4 +1,4 @@
-﻿using Sales.API.Domain.DTOs;
+﻿using Sales.API.Domain.DTOs.Comission;
 using Xunit;
 
 namespace Sales.API.Test.UnitTest.ComissionTest

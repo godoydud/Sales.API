@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Sales.API.Domain.DTOs;
 using Sales.API.Domain.DTOs.Base;
+using Sales.API.Domain.DTOs.Comission;
 using Sales.API.Domain.Entities;
 using Sales.API.Domain.Interfaces.Repositories;
 using Sales.API.Domain.Interfaces.Services;
@@ -43,7 +43,7 @@ namespace Sales.API.Application.Services
         public async Task<ICollection<ComissionDTO>> GetAllAsync()
         {
             var comissions = await _comissionRepository.GetAllAsync();
-            return _mapper.Map<ICollection<ComissionDTO>>(comissions);
+            return _mapper.Map<ICollection<ComissionDTO>>(comissions.OrderBy(x => x.Name));
 
         }
 

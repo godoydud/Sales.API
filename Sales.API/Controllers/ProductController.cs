@@ -54,7 +54,7 @@ namespace Sales.API.Controllers
             return StatusCode(StatusCodes.Status404NotFound);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult Delete(Guid id)
         {
             _productService.DeleteAsync(id);

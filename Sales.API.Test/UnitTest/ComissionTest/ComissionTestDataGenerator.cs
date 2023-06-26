@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Sales.API.Domain.DTOs;
 using Sales.API.Domain.DTOs.Base;
+using Sales.API.Domain.DTOs.Comission;
 
 namespace Sales.API.Test.UnitTest.ComissionTest
 {

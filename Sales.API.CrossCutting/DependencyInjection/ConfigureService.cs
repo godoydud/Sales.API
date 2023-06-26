@@ -10,6 +10,7 @@ namespace Sales.API.CrossCutting.DependencyInjection
         {
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IComissionService, ComissionService>();
+            services.AddScoped<IUserService, UserService>();
             
         }
     }
