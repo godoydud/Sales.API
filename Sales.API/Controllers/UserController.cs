@@ -45,5 +45,11 @@ namespace Sales.API.Controllers
             var result = await _userService.GetUserByIdAsync(id);
             return Ok(result);
         }
+
+        [HttpGet("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            return Ok(await _userService.GetAllAsync());
+        }
     }
 }

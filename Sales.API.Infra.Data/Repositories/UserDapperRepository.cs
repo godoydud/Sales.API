@@ -35,6 +35,13 @@ public class UserDapperRepository : IUserDapperRepository
         return user;
     }
 
+    public async Task<ICollection<User>> GetAllAsync()
+    {
+        var sql = @"SELECT * FROM ""User""";
+        var result = await _dbConnection.QueryAsync<User>(sql);
+        return result.ToList();
+    }
+
     public async Task<UserDTO?> GetUserByIdAsync(Guid id)
     {
         var sql = "SELECT \"Id\", \"UserName\" FROM \"User\" WHERE \"Id\" = @Id";

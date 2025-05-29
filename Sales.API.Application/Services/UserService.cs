@@ -55,7 +55,7 @@ namespace Sales.API.Application.Services
 
         public async Task<ICollection<UserDTO>> GetAllAsync()
         {
-            var users = await _userRepository.GetAllAsync();
+            var users = await _userDapperRepository.GetAllAsync();
             return _mapper.Map<ICollection<UserDTO>>(users);
         }
 
