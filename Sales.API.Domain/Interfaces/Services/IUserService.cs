@@ -9,5 +9,6 @@ namespace Sales.API.Domain.Interfaces.Services
         Task<ICollection<UserDTO>> GetAllAsync();
         bool Login(string username, string password);
         Task<UserDTO>GetUserByIdAsync(Guid id);
+        Task<UserDTO> UpdateUserNameById(Guid id, string userName);
     }
 }

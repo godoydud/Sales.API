@@ -51,5 +51,12 @@ namespace Sales.API.Controllers
         {
             return Ok(await _userService.GetAllAsync());
         }
+        
+        [HttpPut("UpdateUserNameById/{id}")]
+        public async Task<IActionResult> UpdateUserNameById(Guid id, string userName)
+        {
+            var result = await _userService.UpdateUserNameById(id, userName);
+            return Ok(result);
+        }
     }
 }

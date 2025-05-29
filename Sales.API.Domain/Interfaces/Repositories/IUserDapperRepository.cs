@@ -8,5 +8,6 @@ namespace Sales.API.Domain.Interfaces.Repositories
         Task<ICollection<User>> GetAllAsync();
         Task<User> CreateAsync(User user);
         Task<UserDTO?> GetUserByIdAsync(Guid id);
+        Task<UserDTO?> UpdateUserNameById(Guid id, string userName);
     }
 }

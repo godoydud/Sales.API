@@ -8,13 +8,25 @@ public class UserDapperRepository : IUserDapperRepository
 {
     private readonly IDbConnection _dbConnection;
 
-
-
     public UserDapperRepository(IDbConnection dbConnection)
     {
         _dbConnection = dbConnection;
     }
 
+    public async Task<UserDTO?> UpdateUserNameById(Guid id, string userName)
+    {
+        var sql = @"
+            UPDATE ""User""
+            SET ""UserName"" = @UserName,
+            WHERE ""Id"" = @Id";
+
+        await _dbConnection.ExecuteAsync(sql, new
+            {
+                userName
+            }
+        );
+        return await GetUserByIdAsync(id);
+    }
     public async Task<User> CreateAsync(User user)
     {
         var sql = @"

@@ -79,6 +79,12 @@ namespace Sales.API.Application.Services
             return mapResult;
         }
 
+        public async Task<UserDTO> UpdateUserNameById(Guid id, string userName)
+        {
+            var result = await _userDapperRepository.UpdateUserNameById(id, userName);
+            return _mapper.Map<UserDTO>(result);
+        }
+
         public string EncryptPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
