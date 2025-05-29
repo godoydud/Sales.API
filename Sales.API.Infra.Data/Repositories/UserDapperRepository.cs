@@ -17,11 +17,12 @@ public class UserDapperRepository : IUserDapperRepository
     {
         var sql = @"
             UPDATE ""User""
-            SET ""UserName"" = @UserName,
+            SET ""UserName"" = @UserName
             WHERE ""Id"" = @Id";
 
         await _dbConnection.ExecuteAsync(sql, new
             {
+                id,
                 userName
             }
         );
