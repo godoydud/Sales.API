@@ -13,11 +13,13 @@ namespace Sales.API.Application.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserDapperRepository _userDapperRepository;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IUserDapperRepository userDapperRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _userDapperRepository = userDapperRepository;
             _mapper = mapper;
         }
 
@@ -31,7 +33,7 @@ namespace Sales.API.Application.Services
 
                 var user = _mapper.Map<User>(userDTO);
                 user.Password = EncryptPassword(user.Password);
-                await _userRepository.CreateAsync(user);
+                await _userDapperRepository.CreateAsync(user);
                 return new ResponseDTO<UserDTO>(201);
             }
             catch (Exception ex)
@@ -70,9 +72,11 @@ namespace Sales.API.Application.Services
             return errors;
         }
 
-        public UserDTO GetUserByIdAsync(Guid id)
+        public async Task<UserDTO> GetUserByIdAsync(Guid id)
         {
-            return _mapper.Map<UserDTO>(_userRepository.GetUserByIdAsync(id));
+            var result = await _userDapperRepository.GetUserByIdAsync(id);
+            var mapResult = _mapper.Map<UserDTO>(result);
+            return mapResult;
         }
 
         public string EncryptPassword(string password)

@@ -38,5 +38,12 @@ namespace Sales.API.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet("GetUserById/{id}")]
+        public async Task<IActionResult> GetUserByIdAsync(Guid id)
+        {
+            var result = await _userService.GetUserByIdAsync(id);
+            return Ok(result);
+        }
     }
 }

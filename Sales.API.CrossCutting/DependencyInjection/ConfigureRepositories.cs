@@ -18,6 +18,7 @@ namespace Sales.API.CrossCutting.DependencyInjection
             services.AddTransient<IProductRepository, ProductRepositoy>();
             services.AddTransient<IComissionRepository, ComissionRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserDapperRepository, UserDapperRepository>();
         }
     }
 }

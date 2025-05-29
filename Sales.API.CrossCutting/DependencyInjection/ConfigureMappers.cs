@@ -26,8 +26,7 @@ namespace Sales.API.CrossCutting.DependencyInjection
                 #endregion
 
                 #region[UserMapper]
-                config.CreateMap<User, UserDTO>();
-                config.CreateMap<UserDTO, User>();
+                config.CreateMap<User, UserDTO>().ReverseMap();
                 #endregion
 
             }).CreateMapper());

@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using Sales.API.CrossCutting.DependencyInjection;
 using Sales.API.Infra.Data.Context;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,10 @@ builder.Services.AddCors();
 
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<CoreContext>(options =>
-    options.UseNpgsql("Host=localhost;Port=5432;Pooling=true;Database=SalesControl;User Id=postgres;Password=admin;"));
+    options.UseNpgsql("Host=host.docker.internal;Port=5432;Pooling=true;Database=salesapi;User Id=postgres;Password=postgres;"));
+
+builder.Services.AddScoped<IDbConnection>(sp =>
+    new NpgsqlConnection("Host=host.docker.internal;Port=5432;Pooling=true;Database=salesapi;User Id=postgres;Password=postgres;"));
 
 
 ConfigureService.Configure(builder.Services);
